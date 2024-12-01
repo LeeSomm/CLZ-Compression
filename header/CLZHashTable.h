@@ -2,6 +2,7 @@
 #define CLZ_HASHTABLE_H
 
 #include <stack>
+#include <cstddef>
 
 class CLZHashTable {
 public:

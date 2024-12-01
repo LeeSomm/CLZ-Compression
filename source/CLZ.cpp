@@ -300,7 +300,7 @@ void CLZ::pack2(std::ifstream& infile, std::ofstream& outfile) {
   infile.seekg(0, std::ios::end);
   size_t decomp_size = infile.tellg();
   
-  char* array = new char[std::max(16u, decomp_size)];
+  char* array = new char[std::max(static_cast<size_t>(16), decomp_size)];
   
   array[0] = 'C';
   array[1] = 'L';
@@ -386,7 +386,7 @@ void CLZ::pack2(std::ifstream& infile, std::ofstream& outfile) {
       size_t hash = hashes[i % HASH_BUFFER_SIZE][j];
       size_t prev = hash_tables[j - 3].getLast(array, decomp_size, i, hash);
       if (prev != i) {
-        for (size_t t = std::max(longest, 2u); t < j; ++t) {
+        for (size_t t = std::max(longest, static_cast<size_t>(16)); t < j; ++t) {
           current_dlpairs[t] = i - prev;
         }
         longest = j;
